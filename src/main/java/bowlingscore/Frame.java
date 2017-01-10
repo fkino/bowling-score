@@ -49,12 +49,11 @@ public class Frame {
 		return nextFrame;
 	}
 
-
 	Frame() {	
 	}
 	
 	boolean isSpare(int first, int second) {
-		if ((first < ALL_PINS) && (first + second == ALL_PINS)) {
+		if (!isStrike(first) && (first + second == ALL_PINS)) {
 			return true;
 		}
 		return false;		
