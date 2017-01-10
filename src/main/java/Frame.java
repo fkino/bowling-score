@@ -1,7 +1,7 @@
 
 public class Frame {
-	private Throw firstThrow;
-	private Frame nextFrame;
+	Throw firstThrow;
+	Frame nextFrame;
 	
 	private boolean isSpare() {
 		if ((firstThrow.fallenPins() < 10)
@@ -16,6 +16,10 @@ public class Frame {
 			return true;
 		}
 		return false;
+	}
+	
+	Frame() {
+		
 	}
 	
 	public Frame(int[] fallenPins, Frame nextFrame) {

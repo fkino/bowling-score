@@ -57,4 +57,38 @@ public class FrameTest {
 		assertEquals(30, frame1.score());
 	}
 
+	@Test
+	public void _10フレーム目がストライクでもスペアでもない場合のスコアを求める() {
+		int[] fallenPins = {7, 2, 0};
+		Frame frame = new TenFrame(fallenPins);
+		assertEquals(9, frame.score());
+	}
+
+	@Test
+	public void _10フレーム目がスペアの場合のスコアを求める() {
+		int[] fallenPins = {8, 2, 3};
+		Frame frame = new TenFrame(fallenPins);
+		assertEquals(13, frame.score());
+	}
+
+	@Test
+	public void _10フレーム目がストライクの場合のスコアを求める() {
+		int[] fallenPins = {10, 2, 3};
+		Frame frame = new TenFrame(fallenPins);
+		assertEquals(15, frame.score());
+	}
+
+	@Test
+	public void _10フレーム目がダブルの場合のスコアを求める() {
+		int[] fallenPins = {10, 10, 3};
+		Frame frame = new TenFrame(fallenPins);
+		assertEquals(23, frame.score());
+	}
+
+	@Test
+	public void _10フレーム目がターキーの場合のスコアを求める() {
+		int[] fallenPins = {10, 10, 10};
+		Frame frame = new TenFrame(fallenPins);
+		assertEquals(30, frame.score());
+	}
 }
