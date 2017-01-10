@@ -29,12 +29,11 @@ public class Frame {
 	}
 
 	public int score() {
-		if (isSpare()) {
-			return ALL_PINS + firstThrow.nextThrow().nextThrow().fallenPins();
-		} else if (isStrike()) {
-			return ALL_PINS + firstThrow.nextThrow().fallenPins() + firstThrow.nextThrow().nextThrow().fallenPins();
+		int score = firstThrow.fallenPins() + firstThrow.nextThrow().fallenPins();
+		if (isStrike() || isSpare()) {
+			return score + firstThrow.nextThrow().nextThrow().fallenPins();
 		}
-		return firstThrow.fallenPins() + firstThrow.nextThrow().fallenPins();
+		return score;
 	}
 	
 	Frame() {	
@@ -57,7 +56,6 @@ public class Frame {
 	private boolean isSpare() {
 		return isSpare(firstThrow.fallenPins(), firstThrow.nextThrow().fallenPins());
 	}
-
 
 	private boolean isStrike() {
 		return isStrike(firstThrow.fallenPins());
