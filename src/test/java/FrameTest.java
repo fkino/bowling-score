@@ -33,4 +33,28 @@ public class FrameTest {
 		assertEquals(16, frame1.score());
 	}
 
+	@Test
+	public void ダブルの場合のスコアを求める() {
+		int[] fallenPins1 = {10, 0};
+		int[] fallenPins2 = {10, 0};
+		int[] fallenPins3 = {7, 2};
+		Frame frame3 = new Frame(fallenPins3, null);
+		Frame frame2 = new Frame(fallenPins2, frame3);
+		Frame frame1 = new Frame(fallenPins1, frame2);
+		assertEquals(27, frame1.score());
+	}
+
+	@Test
+	public void ターキーの場合のスコアを求める() {
+		int[] fallenPins1 = {10, 0};
+		int[] fallenPins2 = {10, 0};
+		int[] fallenPins3 = {10, 0};
+		int[] fallenPins4 = {7, 2};
+		Frame frame4 = new Frame(fallenPins4, null);
+		Frame frame3 = new Frame(fallenPins3, frame4);
+		Frame frame2 = new Frame(fallenPins2, frame3);
+		Frame frame1 = new Frame(fallenPins1, frame2);
+		assertEquals(30, frame1.score());
+	}
+
 }
