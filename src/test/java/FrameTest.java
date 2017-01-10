@@ -24,4 +24,13 @@ public class FrameTest {
 		assertEquals(19, frame1.score());
 	}
 
+	@Test
+	public void スペアの場合のスコアを求める() {
+		int[] fallenPins1 = {7, 3};
+		int[] fallenPins2 = {6, 2};
+		Frame frame2 = new Frame(fallenPins2, null);
+		Frame frame1 = new Frame(fallenPins1, frame2);
+		assertEquals(16, frame1.score());
+	}
+
 }
