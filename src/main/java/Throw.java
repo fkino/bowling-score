@@ -11,7 +11,8 @@ public class Throw {
 	public int fallenPins() {
 		return fallenPins;
 	}
-	
-	
 
+	public Throw nextThrow() {
+		return nextThrow;
+	}
 }

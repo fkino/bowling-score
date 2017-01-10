@@ -13,4 +13,11 @@ public class ThrowTest {
 		Throw _throw = new Throw(7, null);
 		assertEquals(7, _throw.fallenPins());
 	}
+
+	@Test
+	public void 次の投球で倒したピンの数を返す() {
+		Throw _throw2 = new Throw(7, null);
+		Throw _throw1 = new Throw(2, _throw2);
+		assertEquals(7, _throw1.nextThrow().fallenPins());
+	}
 }
