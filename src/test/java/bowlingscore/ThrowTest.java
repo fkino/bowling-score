@@ -1,4 +1,8 @@
+package bowlingscore;
 import org.junit.Test;
+
+import bowlingscore.Throw;
+
 import static org.junit.Assert.*;
 
 /*

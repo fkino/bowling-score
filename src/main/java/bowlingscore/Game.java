@@ -1,3 +1,4 @@
+package bowlingscore;
 import java.util.Arrays;
 
 public class Game {

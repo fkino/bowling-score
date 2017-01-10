@@ -1,3 +1,4 @@
+package bowlingscore;
 
 public class Throw {
 	private int fallenPins;

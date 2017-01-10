@@ -1,3 +1,4 @@
+package bowlingscore;
 
 public class Frame {
 	static final int FIRST = 0;
