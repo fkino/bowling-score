@@ -1,34 +1,39 @@
 
 public class Frame {
-	private int[] fallenPins = new int[2];
-	Frame nextFrame;
+	private Throw firstThrow;
+	private Frame nextFrame;
 	
 	private boolean isSpare() {
-		if (fallenPins[0] + fallenPins[1] == 10) {
+		if ((firstThrow.fallenPins() < 10)
+				&& (firstThrow.fallenPins() + firstThrow.nextThrow().fallenPins() == 10)) {
 			return true;
 		}
 		return false;
 	}
 
 	private boolean isStrike() {
-		if (fallenPins[0] == 10) {
+		if (firstThrow.fallenPins() == 10) {
 			return true;
 		}
 		return false;
 	}
 	
 	public Frame(int[] fallenPins, Frame nextFrame) {
-		this.fallenPins[0] = fallenPins[0];
-		this.fallenPins[1] = fallenPins[1];
+		Throw nextFrameThrow = null;
+		if (nextFrame != null) {
+			nextFrameThrow = nextFrame.firstThrow;
+		}
+		Throw secondThrow = new Throw(fallenPins[1], nextFrameThrow);
+		firstThrow = new Throw(fallenPins[0], secondThrow);
 		this.nextFrame = nextFrame;
 	}
 
 	public int score() {
 		if (isSpare()) {
-//			return 10 + nextThrow.fallenPins();
+			return 10 + firstThrow.nextThrow().nextThrow().fallenPins();
 		} else if (isStrike()) {
 			return 10 + nextFrame.score();
 		}
-		return fallenPins[0] + fallenPins[1];
+		return firstThrow.fallenPins() + firstThrow.nextThrow().fallenPins();
 	}
 }
