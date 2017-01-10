@@ -22,4 +22,18 @@ public class GameTest {
 		assertArrayEquals(new int[]{9, 9, 29, 45, 54, 61, 69, 90, 110, 125}, game.score());
 	}
 
+	@Test
+	public void パーフェクトゲームの場合のゲーム全体のスコアを計算する() {
+		int[] fallenPins = {10, 0, 10, 0, 10, 0, 10, 0, 10, 0, 10, 0, 10, 0, 10, 0, 10, 0, 10, 10, 10};
+		Game game = new Game(fallenPins);
+		assertArrayEquals(new int[]{30, 60, 90, 120, 150, 180, 210, 240, 270, 300}, game.score());
+	}
+
+	@Test
+	public void すべてガターの場合のゲーム全体のスコアを計算する() {
+		int[] fallenPins = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		Game game = new Game(fallenPins);
+		assertArrayEquals(new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, game.score());
+	}
+
 }
