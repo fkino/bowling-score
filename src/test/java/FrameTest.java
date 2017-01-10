@@ -11,8 +11,17 @@ public class FrameTest {
 	@Test
 	public void ストライクでもスペアでもない場合のスコアを求める() {
 		int[] fallenPins = {7, 2};
-		Frame frame = new Frame(fallenPins);
+		Frame frame = new Frame(fallenPins, null);
 		assertEquals(9, frame.score());
 	}
-	
+
+	@Test
+	public void ストライクの場合のスコアを求める() {
+		int[] fallenPins1 = {10, 0};
+		int[] fallenPins2 = {7, 2};
+		Frame frame2 = new Frame(fallenPins2, null);
+		Frame frame1 = new Frame(fallenPins1, frame2);
+		assertEquals(19, frame1.score());
+	}
+
 }
