@@ -36,6 +36,19 @@ public class Frame {
 		return score;
 	}
 	
+	public String toString() {
+		int secondfallenPins = 0;
+		if (!isStrike()) {
+			secondfallenPins = firstThrow.nextThrow().fallenPins();
+		}
+		return firstThrow.fallenPins() + ", " + secondfallenPins;
+	}
+	
+	public Frame next() {
+		return nextFrame;
+	}
+
+
 	Frame() {	
 	}
 	
@@ -53,12 +66,11 @@ public class Frame {
 		return false;
 	}
 
-	private boolean isSpare() {
+	boolean isSpare() {
 		return isSpare(firstThrow.fallenPins(), firstThrow.nextThrow().fallenPins());
 	}
 
-	private boolean isStrike() {
+	boolean isStrike() {
 		return isStrike(firstThrow.fallenPins());
 	}
-
 }

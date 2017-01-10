@@ -14,4 +14,14 @@ public class TenFrame extends Frame {
 		this.nextFrame = null;
 	}
 	
+	public String toString() {
+		int thirdFallenPins = 0;
+		if (isStrike() || isSpare()) {
+			thirdFallenPins = firstThrow.nextThrow().nextThrow().fallenPins();
+		}
+		return firstThrow.fallenPins()
+				+ ", " + firstThrow.nextThrow().fallenPins()
+				+ ", " + thirdFallenPins;
+	}
+	
 }
