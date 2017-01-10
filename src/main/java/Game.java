@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 public class Game {
-	Frame frame;
+	private Frame frame;
 	
 	public Game(int[] fallenPins) {
 		Frame frame = new TenFrame(Arrays.copyOfRange(fallenPins, 18, 22));
@@ -26,6 +26,22 @@ public class Game {
 		}
 		
 		return fallenPins;
+	}
+
+	public int[] score() {
+		int[] score = new int[10];
+		int prevFrameScore = 0;
+
+		for (int i = 0; i < score.length; i++) {
+			score[i] = frame.score() + prevFrameScore;
+			frame = frame.next();
+			if (frame == null) {
+				break;
+			}
+			prevFrameScore = score[i];
+		}
+		
+		return score;
 	}
 
 }

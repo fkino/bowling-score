@@ -19,6 +19,7 @@ public class GameTest {
 	public void ゲーム全体のスコアを計算する() {
 		int[] fallenPins = {5, 4, 0, 0, 10, 0, 9, 1, 6, 3, 7, 0, 6, 2, 10, 0, 10, 0, 1, 9, 5};
 		Game game = new Game(fallenPins);
-//		assertArrayEquals(new int[]{9, 9, 29, 45, 54, 61, 69, 90, 110, 125}, Game.score());
+		assertArrayEquals(new int[]{9, 9, 29, 45, 54, 61, 69, 90, 110, 125}, game.score());
 	}
+
 }
