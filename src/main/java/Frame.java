@@ -1,28 +1,38 @@
 
 public class Frame {
+	static final int FIRST = 0;
+	static final int SECOND = 1;
+	static final int THIRD = 2;
+	
 	Throw firstThrow;
 	Frame nextFrame;
+	
+	private static final int ALL_PINS = 10;
 	
 	public Frame(int[] fallenPins, Frame nextFrame) {
 		Throw nextFrameThrow = null;
 		if (nextFrame != null) {
 			nextFrameThrow = nextFrame.firstThrow;
-		}
-		
-		if (fallenPins[0] < 10) {
-			Throw secondThrow = new Throw(fallenPins[1], nextFrameThrow);
-			firstThrow = new Throw(fallenPins[0], secondThrow);
 		} else {
-			firstThrow = new Throw(fallenPins[0], nextFrameThrow);
+			// NOOP
+			// 本来はあり得ない。テスト用。
 		}
+
+		if (isStrike(fallenPins[FIRST])) {
+			firstThrow = new Throw(fallenPins[FIRST], nextFrameThrow);
+		} else {
+			Throw secondThrow = new Throw(fallenPins[SECOND], nextFrameThrow);
+			firstThrow = new Throw(fallenPins[FIRST], secondThrow);
+		}
+
 		this.nextFrame = nextFrame;
 	}
 
 	public int score() {
 		if (isSpare()) {
-			return 10 + firstThrow.nextThrow().nextThrow().fallenPins();
+			return ALL_PINS + firstThrow.nextThrow().nextThrow().fallenPins();
 		} else if (isStrike()) {
-			return 10 + firstThrow.nextThrow().fallenPins() + firstThrow.nextThrow().nextThrow().fallenPins();
+			return ALL_PINS + firstThrow.nextThrow().fallenPins() + firstThrow.nextThrow().nextThrow().fallenPins();
 		}
 		return firstThrow.fallenPins() + firstThrow.nextThrow().fallenPins();
 	}
@@ -31,14 +41,14 @@ public class Frame {
 	}
 	
 	boolean isSpare(int first, int second) {
-		if ((first < 10) && (first + second == 10)) {
+		if ((first < ALL_PINS) && (first + second == ALL_PINS)) {
 			return true;
 		}
 		return false;		
 	}
 
 	boolean isStrike(int first) {
-		if (first == 10) {
+		if (first == ALL_PINS) {
 			return true;
 		}
 		return false;
